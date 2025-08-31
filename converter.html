@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+    <title>ヘブライ語翻字変換ツール</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h2>ヘブライ文字翻字を入力するやつ(仮)</h2>
+    </header>
+    <div class="content">
+        <h3>筑波方式</h3>
+        <textarea placeholder="ここに入力" id="inputText1"></textarea>
+        <br>
+        <div class="output"><span id="result1"></span></div>
+        <br>
+        <h3>小脇方式</h3>
+        <textarea placeholder="ここに入力" id="inputText2"></textarea>
+        <br>
+        <div class="output"><span id="result2"></span></div>
+
+        <script>
+            function updateResults() {
+                // 入力値を取得
+
+                //筑波方式
+                const inputText1 = document.getElementById('inputText1').value;
+                const result1 = inputText1
+                    .replace(/O/g, 'ɔ')
+                    .replace(/E/g, 'ɛ')
+                    .replace(/\^a/g, 'ᵃ')
+                    .replace(/\^ɛ/g, 'ᵋ')
+                    .replace(/\^ɔ/g, 'ᵓ')
+                    .replace(/\^w/g, 'ʷ')
+                    .replace(/\^y/g, 'ʸ')
+                    .replace(/3/g, 'ʔ')
+                    .replace(/c/g, 'ʕ')
+                    .replace(/H/g, 'ħ')
+                    .replace(/x/g, 'š')
+                    .replace(/X/g, 'Š')
+                    .replace(/j/g, 'ś')
+                    .replace(/T/g, 'ṭ')
+                    .replace(/K/g, 'ḳ')
+                    .replace(/q/g, 'ḳ')
+                    .replace(/S/g, 'ṣ')
+                    .replace(/p_/g, 'p̄')
+                    .replace(/t_/g, 'ṯ')
+                    .replace(/k_/g, 'ḵ')
+                    .replace(/b_/g, 'ḇ')
+                    .replace(/d_/g, 'ḏ')
+                    .replace(/g_/g, 'ḡ')
+                    .replace(/\^h/g, 'ʰ')
+                    .replace(/\^ʔ/g, 'ˀ')
+                    .replace(/a'/g, 'á')
+                    .replace(/e'/g, 'é')
+                    .replace(/i'/g, 'í')
+                    .replace(/o'/g, 'ó')
+                    .replace(/u'/g, 'ú')
+                    .replace(/ɛ'/g, 'ɛ́')
+                    .replace(/ɔ'/g, 'ɔ́')
+                    .replace(/a\\/g, 'à')
+                    .replace(/e\\/g, 'è')
+                    .replace(/i\\/g, 'ì')
+                    .replace(/o\\/g, 'ò')
+                    .replace(/u\\/g, 'ù')
+                    .replace(/ɛ\\/g, 'ɛ̀')
+                    .replace(/ɔ\\/g, 'ɔ̀');
+
+
+                //結果
+                document.getElementById('result1').textContent = result1;
+
+                //小脇方式
+                const inputText2 = document.getElementById('inputText2').value;
+                const result2 = inputText2
+                    .replace(/oo/g, 'ō')
+                    .replace(/ee/g, 'ē')
+                    .replace(/aa/g, 'ā')
+                    .replace(/e\^/g, 'ê')
+                    .replace(/ê\./g, 'ệ')
+                    .replace(/o\^/g, 'ô')
+                    .replace(/i\^/g, 'î')
+                    .replace(/u\^/g, 'û')
+                    .replace(/@/g, 'ə')
+                    .replace(/əa/g, 'ă')
+                    .replace(/əe/g, 'ĕ')
+                    .replace(/əo/g, 'ŏ')
+                    .replace(/au/g, 'ă')
+                    .replace(/eu/g, 'ĕ')
+                    .replace(/ou/g, 'ŏ')
+                    .replace(/3/g, 'ʾ')
+                    .replace(/c/g, 'ʿ')
+                    .replace(/h\./g, 'ḥ')
+                    .replace(/sv/g, 'š')
+                    .replace(/s'/g, 'ś')
+                    .replace(/t\./g, 'ṭ')
+                    .replace(/s\./g, 'ṣ')
+                    .replace(/p_/g, 'p̄')
+                    .replace(/t_/g, 'ṯ')
+                    .replace(/k_/g, 'ḵ')
+                    .replace(/b_/g, 'ḇ')
+                    .replace(/d_/g, 'ḏ')
+                    .replace(/g_/g, 'ḡ')
+                    .replace(/h_/g, 'ẖ')
+                    .replace(/a'/g, 'á')
+                    .replace(/e'/g, 'é')
+                    .replace(/i'/g, 'í')
+                    .replace(/o'/g, 'ó')
+                    .replace(/u'/g, 'ú')
+                    .replace(/ō'/g, 'ṓ')
+                    .replace(/ē'/g, 'ḗ')
+                    .replace(/ā'/g, 'ā́')
+                    .replace(/ê'/g, 'ê')
+                    .replace(/ệ'/g, 'ệ́')
+                    .replace(/ô'/g, 'ố')
+                    .replace(/î'/g, 'î́')
+                    .replace(/û'/g, 'û́')
+                //結果
+                document.getElementById('result2').textContent = result2;
+            }
+
+
+            // 入力イベントでリアルタイム更新
+            document.getElementById('inputText1').addEventListener('input', updateResults);
+            document.getElementById('inputText2').addEventListener('input', updateResults);
+        </script>
+
+        <h3>つかいかた(筑波方式)</h3>
+        <ul>
+            <li>ɔは"O", ɛは"E"で入力します。</li>
+            <li>アレフとアインはそれぞれ"3", "c"で入力します。</li>
+            <li>š, ś, Šはそれぞれ"x", "j", "X"で入力します。</li>
+            <li>ṭ, ḳ, ṣ, ħは"T", "K", "S", "H"で入力します。</li>
+            <li>摩擦音化したBGDKPTは続けて"_"を入力します。(例)"b_"→ḇ</li>
+            <li>小書きの上付き文字は文字の前に"^"を入力します。(例)"^a"→ᵃ</li>
+            <li>母音の後にアポストロフィを入力するとアキュートアクセントが付きます。(例)e'>é</li>
+            <li>母音の後にバックスペースを入力するとグレーヴアクセントが付きます。</li>
+        </ul>
+
+        <h3>つかいかた(小脇方式)</h3>
+        <ul>
+            <li>マクロン付きの母音は文字を2回続けて入力します。(例)aa→ā</li>
+            <li>サーカムフレックスは続けて"^"を入力します。(例)i^→î</li>
+            <li>下付きドットのある文字は続けてピリオドを入力します(ệは"e^."と入力してください)。</li>
+            <li>シュヴァは"@"で入力します。</li>
+            <li>複合シュヴァă, ĕ, ŏは"au", "eu", "ou"または"@a", "@e", "@o"と入力します。</li>
+            <li>šは"sv"で入力します。</li>
+            <li>摩擦音化したBGDKPTは続けて"_"を入力します。(例)"b_"→ḇ</li>
+            <li>アレフとアインはそれぞれ"3", "c"で入力します。</li>
+            <li>母音の後にアポストロフィを入力するとアクセント記号が付きます(同様にśもsの後にアポストロフィを入力します)。(例)e'>é, u^'→û́</li>
+        </ul>
+
+    </div>
+</body>
+
+</html>
