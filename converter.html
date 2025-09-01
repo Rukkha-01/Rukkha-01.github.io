@@ -39,14 +39,18 @@
                     .replace(/\^y/g, 'ʸ')
                     .replace(/3/g, 'ʔ')
                     .replace(/c/g, 'ʕ')
+                    .replace(/#/g, '3')
                     .replace(/H/g, 'ħ')
                     .replace(/x/g, 'š')
                     .replace(/X/g, 'Š')
                     .replace(/j/g, 'ś')
+                    .replace(/sv/g, 'š')
+                    .replace(/s'/g, 'ś')
                     .replace(/T/g, 'ṭ')
                     .replace(/K/g, 'ḳ')
                     .replace(/q/g, 'ḳ')
                     .replace(/S/g, 'ṣ')
+                    .replace(/ṣv/g, 'Š')
                     .replace(/p_/g, 'p̄')
                     .replace(/t_/g, 'ṯ')
                     .replace(/k_/g, 'ḵ')
@@ -94,6 +98,7 @@
                     .replace(/ou/g, 'ŏ')
                     .replace(/3/g, 'ʾ')
                     .replace(/c/g, 'ʿ')
+                    .replace(/#/g, '3')
                     .replace(/h\./g, 'ḥ')
                     .replace(/sv/g, 'š')
                     .replace(/s'/g, 'ś')
@@ -133,11 +138,11 @@
         <ul>
             <li>ɔは"O", ɛは"E"で入力します。</li>
             <li>アレフとアインはそれぞれ"3", "c"で入力します。</li>
-            <li>š, ś, Šはそれぞれ"x", "j", "X"で入力します。</li>
+            <li>š, Šは"sv", "Sv"で入力します。</li>
             <li>ṭ, ḳ, ṣ, ħは"T", "K", "S", "H"で入力します。</li>
             <li>摩擦音化したBGDKPTは続けて"_"を入力します。(例)"b_"→ḇ</li>
             <li>小書きの上付き文字は文字の前に"^"を入力します。(例)"^a"→ᵃ</li>
-            <li>母音の後にアポストロフィを入力するとアキュートアクセントが付きます。(例)e'>é</li>
+            <li>母音の後にアポストロフィを入力するとアキュートアクセントが付きます(同様にśもsの後にアポストロフィを入力します)。(例)e'>é, u^'→û́</li>
             <li>母音の後にバックスペースを入力するとグレーヴアクセントが付きます。</li>
         </ul>
 
