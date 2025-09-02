@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+    <title>ヘブライ語翻字入力ADVANCED</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>聖書ヘブライ語の翻字・転写を入力するやつADVANCED(仮)</h2>
+    </header>
+    <div class="content">
+        <textarea placeholder="ここに入力" id="inputText"></textarea>
+        <br>
+        <p>翻字</p>
+        <div class="output"><pre id="transliteration"></pre></div>
+        <p>音訳</p>
+        <div class="output"><pre id="transcription"></pre></div>
+        <p>小脇方式</p>
+        <div class="output"><pre id="kowaki"></pre></div>
+
+        <script src="script.js"></script>
+
+        <h3>つかいかた</h3>
+        <ul>
+            <li>筑波方式による翻字と音訳、小脇方式を同時に出力できます。</li>
+            <li>ɔは"O", ɛは"E"で入力します。</li>
+            <li>アレフとアインはそれぞれ"3", "c"で入力します。</li>
+            <li>š, Šは"sv", "Sv"で入力します。</li>
+            <li>ṭ, ḳ, ṣ, ħは"T", "K", "S", "H"で入力します。</li>
+            <li>摩擦音化したBGDKPTは続けて"_"を入力します。(例)"b_"→ḇ</li>
+            <li>小書きの上付き文字は文字の前に"^"を入力します。(例)"^a"→ᵃ</li>
+            <li>母音の後にアポストロフィを入力するとアキュートアクセントが付きます(同様にśもsの後にアポストロフィを入力します)。(例)e'>é, u^'→û́</li>
+            <li>母音の後にバックスペースを入力するとグレーヴアクセントが付きます。</li>
+            <li>数字の3はアレフになってしまうので、代わりに"#"を入力します。</li>
+        </ul>
+
+
+        <h3>参考文献</h3>
+        <ul>
+            <li>
+                池田潤・高橋洋成・池田晶(2003)「聖書ヘブライ語のラテン文字転写について : 文字学・文字論的考察と筑波方式の提案」『一般言語学論叢』6: 61-105.
+            </li>
+            <li>
+                小脇光男(2013)「聖書ヘブライ語文法 改訂版」青山社.
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

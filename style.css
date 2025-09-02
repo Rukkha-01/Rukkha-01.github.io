@@ -154,6 +154,13 @@ th {
     }
 }
 
+button {
+    color: #8D6E63;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #999;
+}
+
 /*入力フォーム*/
 
 textarea {
@@ -174,15 +181,20 @@ textarea {
 .output {
     display: inline-block;
     width: 100%;
-    padding: 10px;
     border-radius: 10px;
     border: 1px solid #999;
     box-sizing: border-box;
     background: #ffffff;
     margin: 0.5em 0;
+    padding: 0 1em;
     line-height: 1.5;
     min-height: 3em;
     height: fit-content;
+}
+
+pre {
+    font-family: inherit;
+    white-space: pre-wrap;
 }
 
 /*↓↓↓目次作成*/
