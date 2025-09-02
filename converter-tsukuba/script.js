@@ -145,7 +145,7 @@ function updateResults() {
 
     //カマツを判定する
     const kowaki4 = kowaki3
-        .replace(/v004(?=c..\.)/g, 'v006')
+        .replace(/v004(?=\.c..\.)/g, 'v006')
         .replace(/(?<=\s|^|-|c41v001\.c04)c04v004\.c45(?=\s|-)/g, 'c04v006.c45')
         .replace(/(?<=\s|^|-|c11ə\.|c04ə\.|c45ə\.|c43ə\.)c07v004\.c45(?=\s|-)/g, 'c07v006.c45');
 
