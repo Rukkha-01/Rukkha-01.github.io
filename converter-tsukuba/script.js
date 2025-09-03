@@ -1,3 +1,19 @@
+// ボタンと非表示にする要素を取得
+const toggleButton = document.getElementById('toggleButton');
+const toggleElement = document.getElementById('toggleElement');
+
+// ボタンクリック時のイベントリスナーを設定
+toggleButton.addEventListener('click', () => {
+    // 要素の表示状態を切り替える
+    if (toggleElement.style.display === 'none' || toggleElement.style.display === '') {
+        toggleElement.style.display = 'block';
+    } else {
+        toggleElement.style.display = 'none';
+    }
+});
+
+
+
 function updateResults() {
     // 入力値を取得
     const inputText = document.getElementById('inputText').value;
@@ -132,7 +148,7 @@ function updateResults() {
 
     //シュヴァを挿入する
     const kowaki3 = kowaki2
-        .replace(/(?<=^c..|\sc..)\./g, 'ə.')
+        .replace(/(?<=^c..|\sc..|-c..)\./g, 'ə.')
         .replace(/(?<=c..c..)\./g, 'ə.')
         .replace(/(?<=v.1.\.c..)\./g, 'ə.')
         .replace(/(?<=v.01\.u5\.c..)\./g, 'ə.')
@@ -149,10 +165,12 @@ function updateResults() {
         .replace(/(?<=\s|^|-|c41v001\.c04)c04v004\.c45(?=\s|-)/g, 'c04v006.c45')
         .replace(/(?<=\s|^|-|c11ə\.|c04ə\.|c45ə\.|c43ə\.)c07v004\.c45(?=\s|-)/g, 'c07v006.c45');
 
-    //先読みのパタハとマッピークを判定する。アレフとヘーの上付きも戻しておく
+    //先読みのパタハとマッピークを判定する。先に先読みパタハの前にアクセントをつけておく。アレフとヘーの上付きも戻しておく
     const kowaki5 = kowaki4
+        .replace(/v0(?=..\.u1)/g, 'v1')
+        .replace(/v0(?=..\.u.\.u1)/g, 'v1')
         .replace(/\.u1/g, '.v003')
-        .replace(/\.c52/g, 'c56')
+        .replace(/\.c52(?=\s|$|\:)/g, 'c56')
         .replace(/u6/g, 'c51')
         .replace(/u7/g, 'c52');
 
@@ -238,8 +256,8 @@ function updateResults() {
         .replace(/c22/g, 'ṭ')
         .replace(/c23/g, 'ṣ')
         .replace(/c24/g, 'q')
-        .replace(/c31/g, 'š')
-        .replace(/c32/g, 'ś')
+        .replace(/c31/g, 'ś')
+        .replace(/c32/g, 'š')
         .replace(/c33/g, 'Š')
         .replace(/c41/g, 'm')
         .replace(/c42/g, 'n')
@@ -258,6 +276,109 @@ function updateResults() {
 
     //結果
     document.getElementById('kowaki').textContent = kowaki8;
+
+
+    //小脇方式から発音記号を生成
+    //yhwh、ダゲシュの処理
+    const pronunciation1 = kowaki8
+        .replace(/yhwh/g, 'ʾăḏōnay')
+        .replace(/YHWH/g, 'ʾăḏōnay')
+        .replace(/bb/g, 'b')
+        .replace(/gg/g, 'g')
+        .replace(/dd/g, 'd')
+        .replace(/ww/g, 'w')
+        .replace(/zz/g, 'z')
+        .replace(/tt/g, 't')
+        .replace(/yy/g, 'y')
+        .replace(/kk/g, 'k')
+        .replace(/ll/g, 'l')
+        .replace(/mm/g, 'm')
+        .replace(/nn/g, 'n')
+        .replace(/ss/g, 's')
+        .replace(/pp/g, 'p')
+        .replace(/ṣṣ/g, 'ṣ')
+        .replace(/šš/g, 'š')
+        .replace(/nn/g, 'n')
+        .replace(/ss/g, 's')
+        .replace(/śś/g, 'ś')
+        .replace(/ṭṭ/g, 'ṭ')
+        .replace(/qq/g, 'q');
+
+
+
+    //記号付き母音の変換
+    const pronunciation2 = pronunciation1
+        .replace(/ē/g, 'e')
+        .replace(/ā/g, 'a')
+        .replace(/ō/g, 'o')
+        .replace(/ē/g, 'e')
+        .replace(/î/g, 'i')
+        .replace(/ê/g, 'e')
+        .replace(/ệ/g, 'e')
+        .replace(/ô/g, 'o')
+        .replace(/û/g, 'u')
+        .replace(/ă/g, 'a')
+        .replace(/ĕ/g, 'e')
+        .replace(/ŏ/g, 'o');
+
+    //記号付き子音の変換
+    const pronunciation3 = pronunciation2
+        .replace(/ḇ/g, 'v')
+        .replace(/ḡ/g, 'ɡ')
+        .replace(/ḏ/g, 'd')
+        .replace(/ḵ/g, 'ꭓ')
+        .replace(/p̄/g, 'f')
+        .replace(/ṯ/g, 't')
+        .replace(/ṭ/g, 't')
+        .replace(/ṣ/g, 'ts')
+        .replace(/ḥ/g, 'ꭓ')
+        .replace(/š/g, 'ʃ')
+        .replace(/ś/g, 's')
+        .replace(/ṯ/g, 't');
+
+    //記号なし子音の変換。アレフとアインはGとおく。
+    const pronunciation4 = pronunciation3
+        .replace(/g/g, 'ɡ')
+        .replace(/q/g, 'k')
+        .replace(/w/g, 'v')
+        .replace(/y/g, 'j')
+        .replace(/r/g, 'ʁ')
+        .replace(/ʾ/g, 'G')
+        .replace(/ʿ/g, 'G')
+        .replace(/ô/g, 'o')
+        .replace(/û/g, 'u');
+
+    //シュヴァの判定と語末h・マピークの処理
+    const pronunciation5 = pronunciation4
+        .replace(/\sjə/g, ' je')
+        .replace(/\svə/g, ' ve')
+        .replace(/\smə/g, ' me')
+        .replace(/\snə/g, ' ne')
+        .replace(/\slə/g, ' le')
+        .replace(/\sʁə/g, ' ʁe')
+        .replace(/^jə/g, 'je')
+        .replace(/^və/g, 've')
+        .replace(/^mə/g, 'me')
+        .replace(/^nə/g, 'ne')
+        .replace(/^lə/g, 'le')
+        .replace(/^ʁə/g, 'ʁe')
+        .replace(/-jə/g, '-je')
+        .replace(/-və/g, '-ve')
+        .replace(/-mə/g, '-me')
+        .replace(/-nə/g, '-ne')
+        .replace(/-lə/g, '-le')
+        .replace(/-ʁə/g, '-ʁe')
+        .replace(/ə(?=G|h)/g, 'e')
+        .replace(/h\s/g, ' ')
+        .replace(/h$/g, '')
+        .replace(/h\:/g, ':')
+        .replace(/h-/g, '-')
+        .replace(/G/g, '')
+        .replace(/ə/g, '');
+
+    //結果
+    document.getElementById('pronunciation').textContent = pronunciation5;
+
 
 
 }
