@@ -21,6 +21,12 @@
         <div class="output"><pre id="transcription"></pre></div>
         <p>小脇方式</p>
         <div class="output"><pre id="kowaki"></pre></div>
+        <button id="toggleButton">発音記号を表示/非表示</button>
+        <div id="toggleElement" style="display: none;">
+            <div class="output">発音記号：
+                <pre id="pronunciation"></pre>
+            </div>
+        </div>
 
         <script src="script.js"></script>
 
@@ -36,6 +42,7 @@
             <li>母音の後にアポストロフィを入力するとアキュートアクセントが付きます(同様にśもsの後にアポストロフィを入力します)。(例)e'>é, u^'→û́</li>
             <li>母音の後にバックスペースを入力するとグレーヴアクセントが付きます。</li>
             <li>数字の3はアレフになってしまうので、代わりに"#"を入力します。</li>
+            <li>発音記号(現代式)を表示するオプションがあります。あまり正確ではないので参考程度です。</li>
         </ul>
 
 
