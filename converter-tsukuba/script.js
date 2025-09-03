@@ -380,6 +380,155 @@ function updateResults() {
     document.getElementById('pronunciation').textContent = pronunciation5;
 
 
+    //ヘブライ文字に変換する
+    //前処理を施したkowaki2を再利用する。
+    //まずは強ダゲシュを処理する。bgdkptは普通の子音と同じ。その他はd00の形式にし、c00と対応させる。
+    const hebrew1 = kowaki2
+        .replace(/c01c01/g, 'c01')
+        .replace(/c02c02/g, 'c02')
+        .replace(/c03c03/g, 'd03')
+        .replace(/c04c04/g, 'c04')
+        .replace(/c11c11/g, 'c11')
+        .replace(/c12c12/g, 'c12')
+        .replace(/c13c13/g, 'd13')
+        .replace(/c14c14/g, 'c14')
+        .replace(/c22c22/g, 'd22')
+        .replace(/c23c23/g, 'd23')
+        .replace(/c24c24/g, 'd24')
+        .replace(/c31c31/g, 'd31')
+        .replace(/c32c32/g, 'd32')
+        .replace(/c33c33/g, 'd33')
+        .replace(/c41c41/g, 'd41')
+        .replace(/c42c42/g, 'd42')
+        .replace(/c43c43/g, 'd43')
+        .replace(/c44c44/g, 'd44')
+        .replace(/c45c45/g, 'd45');
+
+    //シュヴァを挿入する。シュヴァはv300とする。語末カフにも挿入
+    const hebrew2 = hebrew1
+        .replace(/(?<=c..)\./g, 'v300.')
+        .replace(/(?<=d..)\./g, 'v300.')
+        .replace(/\.c07(?=\s|$|-|\:)/g, '.c07v300');
+
+    //語末形を処理する。cxx or c07vxxx(スペース or 行末 or ハイフン or コロン)であれば.cxxを語末形にする。c60番台にする。ついでにホラム・ワウとシュルクも処理しておく。v024とv025。先読みのパタハとマピークも処理する。
+    const hebrew3 = hebrew2
+        .replace(/c07(?=\s|$|-|\:)/g, 'c61')
+        .replace(/c07(?=v...\s|v...$|v...-|v...\:)/g, 'c61')
+        .replace(/c41(?=\s|$|-|\:)/g, 'c62')
+        .replace(/c42(?=\s|$|-|\:)/g, 'c63')
+        .replace(/c05(?=\s|$|-|\:)/g, 'c64')
+        .replace(/c23(?=\s|$|-|\:)/g, 'c65')
+        .replace(/v012\.u4/g, 'v024')
+        .replace(/v005\.u4/g, 'v025')
+        .replace(/v112\.u4/g, 'v124')
+        .replace(/v105\.u4/g, 'v125')
+        .replace(/v212\.u4/g, 'v224')
+        .replace(/v205\.u4/g, 'v225')
+        .replace(/u1c52/g, 'c52v003')
+        .replace(/u1c53/g, 'c53v003')
+        .replace(/u1c54/g, 'c54v003')
+        .replace(/\.c52(?=\s|$|-|\:)/g, '.c56');
+    //以上で前処理は終了。
+
+    //ヘブライ文字へ置き換えを行う。まずは子音
+    const hebrew4 = hebrew3
+        .replace(/c01/g, 'פּ')
+        .replace(/c02/g, 'תּ')
+        .replace(/c03/g, 'ס')
+        .replace(/c04/g, 'כּ')
+        .replace(/c05/g, 'פ')
+        .replace(/c06/g, 'ת')
+        .replace(/c07/g, 'כ')
+        .replace(/c11/g, 'בּ')
+        .replace(/c12/g, 'דּ')
+        .replace(/c13/g, 'ז')
+        .replace(/c14/g, 'גּ')
+        .replace(/c15/g, 'ב')
+        .replace(/c16/g, 'ד')
+        .replace(/c17/g, 'ג')
+        .replace(/c22/g, 'ט')
+        .replace(/c23/g, 'צ')
+        .replace(/c24/g, 'ק')
+        .replace(/c31/g, 'שׂ')
+        .replace(/c32/g, 'שׁ')
+        .replace(/c33/g, 'ש')
+        .replace(/c41/g, 'מ')
+        .replace(/c42/g, 'נ')
+        .replace(/c43|u4/g, 'ו')
+        .replace(/c44|u5/g, 'י')
+        .replace(/c45/g, 'ל')
+        .replace(/c51|u6/g, 'א')
+        .replace(/c52|u7/g, 'ה')
+        .replace(/c53/g, 'ע')
+        .replace(/c54/g, 'ח')
+        .replace(/c55/g, 'ר')
+        .replace(/c56/g, 'הּ')
+        .replace(/d03/g, 'סּ')
+        .replace(/d13/g, 'זּ')
+        .replace(/d22/g, 'טּ')
+        .replace(/d23/g, 'צּ')
+        .replace(/d24/g, 'קּ')
+        .replace(/d31/g, 'שּׂ')
+        .replace(/d32/g, 'שּׁ')
+        .replace(/d41/g, 'מּ')
+        .replace(/d42/g, 'נּ')
+        .replace(/d43/g, 'וּ')
+        .replace(/d44/g, 'יּ')
+        .replace(/d45/g, 'לּ')
+        .replace(/c61/g, 'ך')
+        .replace(/c62/g, 'ם')
+        .replace(/c63/g, 'ן')
+        .replace(/c64/g, 'ף')
+        .replace(/c65/g, 'ץ');
+
+
+    //母音の変換、ついでにピリオドとコンマ消す、記号類変える
+    const hebrew5 = hebrew4
+        .replace(/u1/g, '\u{05b2}')
+        .replace(/u2/g, '\u{05b1}')
+        .replace(/u3/g, '\u{05b3}')
+        .replace(/v001/g, '\u{05b4}')
+        .replace(/v002/g, '\u{05b6}')
+        .replace(/v003/g, '\u{05b7}')
+        .replace(/v004/g, '\u{05b8}')
+        .replace(/v005/g, '\u{05bb}')
+        .replace(/v011/g, '\u{05b5}')
+        .replace(/v012/g, '\u{05b9}')
+        .replace(/v024/g, '\u{fb4b}')
+        .replace(/v025/g, '\u{fb35}')
+        .replace(/v101/g, '\u{05b4}\u{05ab}')
+        .replace(/v102/g, '\u{05b6}\u{05ab}')
+        .replace(/v103/g, '\u{05b7}\u{05ab}')
+        .replace(/v104/g, '\u{05b8}\u{05ab}')
+        .replace(/v105/g, '\u{05bb}\u{05ab}')
+        .replace(/v111/g, '\u{05b5}\u{05ab}')
+        .replace(/v112/g, '\u{05b9}\u{05ab}')
+        .replace(/v124/g, '\u{fb4b}\u{05ab}')
+        .replace(/v125/g, '\u{fb35}\u{05ab}')
+        .replace(/v201/g, '\u{05bd}\u{05b4}')
+        .replace(/v202/g, '\u{05bd}\u{05b6}')
+        .replace(/v203/g, '\u{05bd}\u{05b7}')
+        .replace(/v204/g, '\u{05bd}\u{05b8}')
+        .replace(/v205/g, '\u{05bd}\u{05bb}')
+        .replace(/v211/g, '\u{05bd}\u{05b5}')
+        .replace(/v212/g, '\u{05bd}\u{05b9}')
+        .replace(/v224/g, '\u{05bd}\u{fb4b}')
+        .replace(/v225/g, '\u{05bd}\u{fb35}')
+        .replace(/v300/g, '\u{05b0}')
+        .replace(/\./g, '')
+        .replace(/\,/g, '')
+        .replace(/\:/g, '\u{05c3}')
+        .replace(/-/g, '\u{05be}')
+
+
+
+
+
+
+
+
+    //結果
+    document.getElementById('hebrew').textContent = hebrew5;
 
 }
 
