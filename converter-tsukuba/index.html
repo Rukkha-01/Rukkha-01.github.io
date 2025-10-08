@@ -15,14 +15,26 @@
     <div class="content">
         <textarea placeholder="ここに入力" id="inputText"></textarea>
         <br>
+        <!-- <input type="radio" name="rule" id="rule1" value="rule1" checked>
+        <label for="rule1">ASCII-Tsukubaから入力</label>
+        <input type="radio" name="rule" id="rule2" value="rule2">
+        <label for="rule2">ヘブライ文字から入力</label><br> -->
         <p>翻字</p>
-        <div class="output"><pre id="transliteration"></pre></div>
+        <div class="output">
+            <pre id="transliteration"></pre>
+        </div>
         <p>音訳</p>
-        <div class="output"><pre id="transcription"></pre></div>
+        <div class="output">
+            <pre id="transcription"></pre>
+        </div>
         <p>ヘブライ文字</p>
-        <div class="output"><pre id="hebrew"></pre></div>
+        <div class="output">
+            <pre id="hebrew"></pre>
+        </div>
         <p>小脇方式</p>
-        <div class="output"><pre id="kowaki"></pre></div>
+        <div class="output">
+            <pre id="kowaki"></pre>
+        </div>
         <button id="toggleButton">発音記号を表示/非表示</button>
         <div id="toggleElement" style="display: none;">
             <div class="output">発音記号：
@@ -34,7 +46,13 @@
 
         <h3>つかいかた</h3>
         <ul>
-            <li>筑波方式による翻字と音訳、ヘブライ文字、小脇方式転写を同時に出力できます。</li>
+            <li>ASCII-Tsukuba方式で入力すると、<a href="../tsukuba.html">筑波方式</a>
+                による翻字と音訳、ヘブライ文字、小脇方式転写を同時に出力できます。</li>
+            <li>発音記号(現代式)を表示するオプションがあります。あまり正確ではないので参考程度です。</li>
+        </ul>
+        <h3>ASCII-Tsukuba方式(仮)</h3>
+        <ul>
+            <li>筑波方式をASCIIのみで簡単に入力するための方式です。</li>
             <li>ɔは"O", ɛは"E"で入力します。</li>
             <li>アレフとアインはそれぞれ"3", "c"で入力します。</li>
             <li>š, Šは"sv", "Sv"で入力します。</li>
@@ -44,7 +62,6 @@
             <li>母音の後にアポストロフィを入力するとアキュートアクセントが付きます(同様にśもsの後にアポストロフィを入力します)。(例)e'>é, u^'→û́</li>
             <li>母音の後にバックスペースを入力するとグレーヴアクセントが付きます。</li>
             <li>数字の3はアレフになってしまうので、代わりに"#"を入力します。</li>
-            <li>発音記号(現代式)を表示するオプションがあります。あまり正確ではないので参考程度です。</li>
         </ul>
 
 

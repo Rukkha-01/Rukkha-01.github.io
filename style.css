@@ -28,6 +28,18 @@ header {
     position: relative;
 }
 
+footer {
+    margin-top: 0px;
+    max-width: 900px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-height: auto;
+    margin: auto;
+    background-color: white;
+    position: relative;
+}
 
 .content {
     max-width: 900px;
@@ -45,6 +57,7 @@ td {
     border: solid 1px #8D6E63;
     padding-left: 16px;
     padding-right: 16px;
+    text-align: center;
 }
 
 table {
@@ -58,6 +71,9 @@ table {
     text-align: right;
 }
 
+.large {
+    font-size: 200%;
+}
 
 
 
